@@ -10,7 +10,7 @@ import {ArrowLeft, ArrowRight} from "@element-plus/icons-vue";
       w-full bg-blue-500 relative">
 
       <div class="absolute shadow top-0 md:top-10 left-1/2 transform -translate-x-1/2 w-full md:w-[90%] h-fit
-       ms:rounded-full bg-gray-100 py-2 px-4 flex justify-between items-center">
+       md:rounded-full bg-gray-100 py-2 px-4 flex justify-between items-center">
         <div class="font-extrabold text-xlx  text-gray-800">MACAR</div>
         <div class="flex gap-4 h-fit items-center">
           <span>Home</span>
@@ -47,7 +47,7 @@ import {ArrowLeft, ArrowRight} from "@element-plus/icons-vue";
 
     <!--    cards-->
     <div class="flex gap-2 flex-wrap items-center justify-start px-4">
-      <div v-for="item in 10"
+      <div v-for="item in 5"
           class="flex flex-col gap-4 px-4">
         <div class="w-[330px] h-[200px] border rounded-lg flex flex-col justify-between p-4">
           <div class="w-full flex justify-end items-center relative">
