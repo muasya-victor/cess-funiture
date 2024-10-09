@@ -3,13 +3,14 @@ import LoginView from "@/views/auth/view/LoginView.vue"
 import RegisterView from "@/views/auth/view/RegisterView.vue"
 import TheDashboardView from "@/components/TheDashboardView.vue";
 import UserProfile from "@/views/profile/UserProfile.vue";
+import Landing from "@/views/Landing.vue";
 
 
 const routes = [
   {
     name:'home',
     path: '/',
-    component: RegisterView,
+    component: Landing,
     requiresAuth: false,
     meta: {
       slug: 'Home',
