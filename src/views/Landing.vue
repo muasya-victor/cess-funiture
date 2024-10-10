@@ -1,10 +1,14 @@
 <script setup>
 
 import {ArrowLeft, ArrowRight} from "@element-plus/icons-vue";
+import CarCard from "@/views/car/CarCard.vue";
 </script>
 
 <template>
   <div class="flex flex-col items-center gap-6">
+
+    <router-view/>
+
     <div class="h-[300px] md:h-[400px]  xl:h-[650px] flex flex-col items-start justify-center
      bg-cover bg-no-repeat bg-top bg-[url('/bg4.jpg')]
       w-full bg-blue-500 relative">
@@ -47,25 +51,7 @@ import {ArrowLeft, ArrowRight} from "@element-plus/icons-vue";
 
     <!--    cards-->
     <div class="flex gap-2 flex-wrap items-center justify-start px-4">
-      <div v-for="item in 5"
-          class="flex flex-col gap-4 px-4">
-        <div class="w-[330px] h-[200px] border rounded-lg flex flex-col justify-between p-4">
-          <div class="w-full flex justify-end items-center relative">
-            <div class="absolute top-0 left-0 flex items-center gap-2 p-1">
-              <el-tag type="warning">New</el-tag>
-              <el-tag type="success">Available</el-tag>
-            </div>
-            <img class="absolute -top-8 -right-6 h-auto w-72" alt="bugatti" src="/bg1.png">
-          </div>
-          <div class="flex flex-col gap-2">
-            <h3 class="text-gray-500">Bugatti Chevron</h3>
-            <div class="flex justify-between font-bold">
-              <div>Chevron,2021</div>
-              <div>KES 800/hour</div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <car-card v-for="item in 5"/>
     </div>
 
     <!--    cards-->

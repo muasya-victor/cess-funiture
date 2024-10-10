@@ -4,6 +4,7 @@ import RegisterView from "@/views/auth/view/RegisterView.vue"
 import TheDashboardView from "@/components/TheDashboardView.vue";
 import UserProfile from "@/views/profile/UserProfile.vue";
 import Landing from "@/views/Landing.vue";
+import CarPopUp from "@/views/car/CarPopUp.vue";
 
 
 const routes = [
@@ -15,6 +16,17 @@ const routes = [
     meta: {
       slug: 'Home',
     },
+    children: [
+      {
+        name:'car',
+        path: 'car/:id',
+        component: CarPopUp,
+        requiresAuth: false,
+        meta: {
+          slug: 'Detailed View',
+        },
+      }
+    ]
   },{
     name:'register',
     path: '/register',
