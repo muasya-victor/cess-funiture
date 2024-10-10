@@ -5,6 +5,8 @@ import TheDashboardView from "@/components/TheDashboardView.vue";
 import UserProfile from "@/views/profile/UserProfile.vue";
 import Landing from "@/views/Landing.vue";
 import CarPopUp from "@/views/car/CarPopUp.vue";
+import ComingSoon from "@/components/ComingSoon.vue";
+import CheckoutPage from "@/views/checkout/CheckoutPage.vue";
 
 
 const routes = [
@@ -61,6 +63,15 @@ const routes = [
           requiresAuth: true,
           meta: {
             slug: 'Profile',
+          },
+        },
+        {
+          name: 'checkout',
+          path: 'checkout',
+          component: CheckoutPage,
+          requiresAuth: true,
+          meta: {
+            slug: 'Checkout',
           },
         },
       ]

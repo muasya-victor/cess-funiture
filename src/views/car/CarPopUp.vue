@@ -2,10 +2,12 @@
 
 import BaseDialog from "@/components/base/BaseDialog.vue";
 import router from "@/router/index.js";
-
+import {ref} from "vue"
 const attemptSubmit = ()=>{
   router.push({name:'login'})
 }
+
+const dateRange = ref('')
 </script>
 
 <template>
@@ -38,7 +40,26 @@ const attemptSubmit = ()=>{
           <span>2000cc</span>
         </div>
 
-        <el-button size="large" type="success" plain class="" round @click="attemptSubmit">Rent This Car</el-button>
+        <div
+            class="mt-4 text-orange-500"
+        >To Rent This Car , Select Start and End Period</div>
+
+        <el-date-picker
+            v-model="dateRange"
+            type="daterange"
+            size="large"
+            clearable
+            style="width: 100%"
+            range-separator="To"
+            start-placeholder="Start date"
+            end-placeholder="End date"
+        />
+
+        <el-button size="large" type="success"
+                   :disabled="dateRange ? false : true"
+                   plain
+                   class=""
+                   round @click="attemptSubmit">Rent This Car</el-button>
       </div>
     </template>
   </BaseDialog>

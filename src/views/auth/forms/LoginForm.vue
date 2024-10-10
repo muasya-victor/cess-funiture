@@ -104,7 +104,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
           localStorage.setItem("authData", JSON.stringify(resp.data));
           loginLoading.value = false;
 
-          router.push({name:'invoice-list'})
+          router.push({name:'checkout'})
         })
           .catch((err)=>{
             loginLoading.value = false;
