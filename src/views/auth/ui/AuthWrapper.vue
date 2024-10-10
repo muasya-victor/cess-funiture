@@ -4,8 +4,8 @@ import ExternalAuth from "@/views/auth/forms/ExternalAuth.vue"
 import { onMounted,ref, watch } from "vue"
 
 const loginImages = ref([
-  'Quick.png',
-  'etims-Machine-Receipt.png',
+  'bg1.png',
+  'bg3.png',
   ])
 
 const imageIndex = ref(0)
@@ -44,9 +44,9 @@ onMounted(()=>{
 
 <template>
   <div class="grid md:grid-cols-12 h-screen ">
-    <div class="w-full col-span-5 flex flex-col gap-4 h-full hidden md:flex items-center justify-center bg-blue-100">
+    <div class="w-full col-span-5 flex-col gap-4 h-full hidden md:flex items-center justify-center bg-blue-100">
       <div class="h-2/3 flex items-center justify-center w-full">
-        <img alt="agile ui login illustration " :src="'/' + currentImage()" class="w-2/3" >
+        <img alt="agile ui login illustration " :src="'/' + currentImage()" class="w-full" >
       </div>
 
       <div class="flex flex-row gap-2 ">
@@ -61,7 +61,7 @@ onMounted(()=>{
       <div class="w-8/12 flex flex-col gap-4 ">
         <slot></slot>
 
-        <span class="text-gray-300 text-xs mt-5">
+        <span class="text-gray-300 text-xs mt-5 hidden">
           System By
           <a href="mailto:vicmwe184@gmail.com?subject=Interested%20in%20System%20Development&body=Hello%20Victor,%0D%0A%0D%0AI%20am%20interested%20in%20discussing%20the%20possibility%20of%20you%20developing%20a%20system%20for%20my%20business.%20Please%20let%20me%20know%20how%20we%20can%20move%20forward.%0D%0A%0D%0ABest%20regards,"
              target="_blank">Muasya</a>

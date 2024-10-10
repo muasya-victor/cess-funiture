@@ -7,8 +7,8 @@
     label-position="top"
   >
     <div class="flex gap-2 items-start">
-<!--      <h1 class="font-bold text-2xl text-blue-500">{{projectName}}</h1>-->
-      <img src="/logo.png" alt="quick validate logo" class="w-36">
+<!--      <img src="/logo.png" alt="quick validate logo" class="w-36">-->
+      <div class="font-extrabold text-2xl">MACAR</div>
     </div>
 
     <el-form-item label="Username" prop="username"
