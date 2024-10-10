@@ -2,6 +2,11 @@
 
 import {ArrowLeft, ArrowRight} from "@element-plus/icons-vue";
 import CarCard from "@/views/car/CarCard.vue";
+import router from "@/router/index.js";
+
+const viewCar = (id=1)=>{
+  router.push({name:'car',params:{id:id}});
+}
 </script>
 
 <template>
@@ -51,7 +56,7 @@ import CarCard from "@/views/car/CarCard.vue";
 
     <!--    cards-->
     <div class="flex gap-2 flex-wrap items-center justify-start px-4">
-      <car-card v-for="item in 5"/>
+      <car-card @click="viewCar" v-for="item in 5"/>
     </div>
 
     <!--    cards-->

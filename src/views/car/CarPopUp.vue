@@ -1,6 +1,11 @@
 <script setup>
 
 import BaseDialog from "@/components/base/BaseDialog.vue";
+import router from "@/router/index.js";
+
+const attemptSubmit = ()=>{
+  router.push({name:'login'})
+}
 </script>
 
 <template>
@@ -33,7 +38,7 @@ import BaseDialog from "@/components/base/BaseDialog.vue";
           <span>2000cc</span>
         </div>
 
-        <el-button size="large" type="success" plain class="" round>Rent This Car</el-button>
+        <el-button size="large" type="success" plain class="" round @click="attemptSubmit">Rent This Car</el-button>
       </div>
     </template>
   </BaseDialog>
