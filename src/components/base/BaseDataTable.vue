@@ -176,7 +176,7 @@ export default {
       store
           .dispatch("fetchList", {url})
           .then((resp) => {
-            this.dataSource = resp.data;
+            this.dataSource = resp.data?.results;
             this.loading = false;
           })
           .catch(() => {

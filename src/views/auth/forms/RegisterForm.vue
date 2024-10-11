@@ -3,7 +3,7 @@
       ref="ruleForm"
       :model="form"
       :rules="rules"
-      class="flex flex-col gap-4 w-full h-fit"
+      class="flex flex-col gap-4 w-full h-full"
       label-position="top"
     >
 
@@ -36,6 +36,17 @@
               type="email"
           />
         </el-form-item>
+
+        <el-form-item label="National Id" prop="last_name">
+          <el-input
+              v-model="form.last_name"
+              :prefix-icon="UserIcon"
+              placeholder="last name"
+              size="large"
+              type="text"
+          />
+        </el-form-item>
+
       </div>
 
 

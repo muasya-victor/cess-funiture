@@ -7,6 +7,9 @@ import Landing from "@/views/Landing.vue";
 import CarPopUp from "@/views/car/CarPopUp.vue";
 import ComingSoon from "@/components/ComingSoon.vue";
 import CheckoutPage from "@/views/checkout/CheckoutPage.vue";
+import BrowseCars from "@/views/car/BrowseCars.vue";
+import Employees from "@/views/profile/Employees.vue";
+import RegisterForm from "@/views/auth/forms/RegisterForm.vue";
 
 
 const routes = [
@@ -66,6 +69,15 @@ const routes = [
           },
         },
         {
+          name: 'users',
+          path: 'users',
+          component: Employees,
+          requiresAuth: true,
+          meta: {
+            slug: 'Users',
+          },
+        },
+        {
           name: 'checkout',
           path: 'checkout',
           component: CheckoutPage,
@@ -73,6 +85,44 @@ const routes = [
           meta: {
             slug: 'Checkout',
           },
+        },
+        {
+          name: 'register-car',
+          path: 'register-car',
+          component: CheckoutPage,
+          requiresAuth: true,
+          meta: {
+            slug: 'Checkout',
+          },
+        },
+      {
+          name: 'register-user',
+          path: 'register-user',
+          component: RegisterForm,
+          requiresAuth: true,
+          meta: {
+            slug: 'Checkout',
+          },
+        },
+        {
+          name: 'cars',
+          path: 'cars',
+          component: BrowseCars,
+          requiresAuth: true,
+          meta: {
+            slug: 'Browse Cars',
+          },
+          children: [
+            {
+              name:'rent-car',
+              path: 'rent-car/:id',
+              component: CarPopUp,
+              requiresAuth: false,
+              meta: {
+                slug: 'Rent Car',
+              },
+            }
+          ]
         },
       ]
 

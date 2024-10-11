@@ -31,9 +31,9 @@ const columns = ref([
     key: "user_type",
   },
   {
-    title: "Is Active",
-    dataIndex: "is_active",
-    key: "is_active",
+    title: "Email",
+    dataIndex: "email",
+    key: "email",
   },
   {
     title: "Actions",
@@ -64,20 +64,19 @@ const allowDelete = ref('');
 
   <BaseDataTable
       :columns="columns"
-      :fetch-url="props.newUrl"
-      createRouteName="register-user"
-      title="Employees">
+      fetch-url="users/"
+      title="System Users">
 
 
     <template v-slot:bodyCell="slotProps">
 
-      <template v-if="slotProps.column.key === 'is_active'">
-        <el-tag size="large" type="success" v-if="slotProps.text === true" class="capitalize">
-          {{slotProps.text}}
+      <template v-if="slotProps.column.key === 'user_type'">
+        <el-tag size="large" type="info" v-if="slotProps.text === 'car_owner'" class="capitalize">
+          Car Owner
         </el-tag>
 
-        <el-tag type="danger" size="large" v-else class="capitalize">
-          {{slotProps.text}}
+        <el-tag type="info" size="large" v-else class="capitalize">
+          Customer
         </el-tag>
       </template>
 

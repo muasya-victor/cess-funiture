@@ -41,10 +41,6 @@ const viewCar = (id=1)=>{
     </div>
 
     <div class="flex gap-2 px-2 flex-wrap justify-center items-center w-fit">
-<!--      <div class="h-12 w-fit px-4 border border-gray-100 rounded-lg flex items-center justify-center">-->
-<!--        Toyota-->
-<!--      </div>-->
-
       <el-button size="large">Toyota</el-button>
       <el-button size="large">Subaru</el-button>
       <el-button size="large">BMW</el-button>

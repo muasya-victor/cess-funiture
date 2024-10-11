@@ -13,8 +13,8 @@ const props = defineProps({
 </script>
 
 <template>
-  <div class="flex flex-col gap-4 cursor-pointer ">
-    <div class="w-[330px] h-[200px] border rounded-lg flex flex-col justify-between p-4 hover:bg-gray-50 hover:shadow">
+  <div class="flex flex-col gap-4 cursor-pointer w-full md:w-fit">
+    <div class="w-full md:w-[330px] h-[200px] border rounded-lg flex flex-col justify-between p-4 hover:bg-gray-50 hover:shadow">
       <div class="w-full flex justify-end items-center relative">
         <div class="absolute top-0 left-0 flex items-center gap-2 p-1">
           <el-tag type="warning">New</el-tag>
