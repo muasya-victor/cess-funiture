@@ -3,13 +3,25 @@
 import {ArrowLeft, ArrowRight, ShoppingTrolley} from "@element-plus/icons-vue";
 import CarCard from "@/views/car/CarCard.vue";
 import router from "@/router/index.js";
-import {ref} from "vue"
+import {ref, onMounted} from "vue"
+import store from "@/store/index.js";
 
 const viewCar = (id=1)=>{
   router.push({name:'car',params:{id:id}});
 }
 
 const filters = ref(['all'])
+
+const getProducts = ()=>{
+  store.dispatch('fetchList', {url:'products'})
+      .then((res)=>{
+        console.log(res.data, 'products')
+      })
+}
+
+onMounted(()=>{
+  getProducts()
+})
 </script>
 
 <template>
