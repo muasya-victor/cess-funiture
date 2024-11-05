@@ -1,14 +1,28 @@
 <script setup>
 
 import BaseDialog from "@/components/base/BaseDialog.vue";
-import router from "@/router/index.js";
-import {ref} from "vue"
+import {ref,onMounted} from "vue"
 import FurnitureViewer from "@/components/FurnitureViewer.vue";
-const attemptSubmit = ()=>{
-  router.push({name:'login'})
+import {useRouter, useRoute} from "vue-router";
+import {useStore} from "vuex";
+
+const router = useRouter()
+const route = useRoute()
+const store = useStore()
+
+const productObj = ref(null)
+
+const getProduct = ()=>{
+  store.dispatch("fetchSingleItem", {url:'products', id:route?.params?.furnitureId})
+      .then((res)=>{
+        productObj.value = res?.data
+      });
 }
 
-const dateRange = ref('')
+onMounted(()=>{
+  getProduct()
+})
+
 </script>
 
 <template>
@@ -23,9 +37,8 @@ const dateRange = ref('')
       <div class="flex flex-col gap-4">
 
         <div class="w-full flex flex-col items-center justify-center gap-6">
-<!--          <img class=" h-auto w-96" alt="bugatti" src="/bg1.png">-->
-           <FurnitureViewer :image-size="1.1" model-path="/InteriorTest.obj"></FurnitureViewer>
-<!--           <FurnitureViewer :image-size="1.1" model-path="/FinalBaseMesh.obj"></FurnitureViewer>-->
+           <FurnitureViewer :product-object="productObj" :image-size="1.1" model-path="/InteriorTest.obj">
+           </FurnitureViewer>
         </div>
       </div>
     </template>

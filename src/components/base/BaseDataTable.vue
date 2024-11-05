@@ -71,7 +71,7 @@ import {defineEmits} from 'vue'
 
 
 export default {
-  name: "BaseTable",
+  product_name: "BaseTable",
   components: {
     PlusOutlined,
     ReloadOutlined,

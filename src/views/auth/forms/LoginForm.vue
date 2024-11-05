@@ -8,7 +8,7 @@
   >
     <div class="flex gap-2 items-start">
 <!--      <img src="/logo.png" alt="quick validate logo" class="w-36">-->
-      <div class="font-extrabold text-2xl">MACAR</div>
+      <div class="font-extrabold text-2xl">CESS FUNITURE</div>
     </div>
 
     <el-form-item label="Username" prop="username"
@@ -66,7 +66,7 @@ import { reactive, ref } from "vue";
 import { LockClosedIcon, UserIcon } from "@heroicons/vue/24/solid";
 import {ElNotification, FormInstance, FormRules} from "element-plus";
 import store from "@/store/index";
-import router from "@/router/index"
+import {useRouter} from "vue-router";
 import Swal from "sweetalert2";
 import {projectName} from "@/utility/constants.js"
 const loading = ref(false);
@@ -75,6 +75,8 @@ const form = reactive({
 
 
 const loginLoading = ref(false);
+
+const router = useRouter()
 
 const ruleFormRef = ref<FormInstance>();
 const rules = reactive<FormRules>({
@@ -92,6 +94,11 @@ const rules = reactive<FormRules>({
 });
 const submitForm = async (formEl: FormInstance | undefined) => {
   loginLoading.value = true;
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  if (cart) {
+    console.log('cart', cart)
+    router.push({name:'checkout'});
+  }
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
@@ -104,7 +111,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
           localStorage.setItem("authData", JSON.stringify(resp.data));
           loginLoading.value = false;
 
-          router.push({name:'checkout'})
+          router.push({name:'furniture'})
         })
           .catch((err)=>{
             loginLoading.value = false;

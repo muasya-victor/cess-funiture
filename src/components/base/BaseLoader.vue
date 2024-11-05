@@ -9,7 +9,7 @@
 import { Loading } from "@element-plus/icons-vue"
 
 export default {
-  name: "BaseLoader",
+  product_name: "BaseLoader",
   components: { Loading },
   props : {
     hideText : {

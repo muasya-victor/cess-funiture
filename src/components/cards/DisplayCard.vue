@@ -62,7 +62,7 @@ const filteredRoutes = computed(() => {
 const actions = ref('')
 const performAction = ()=>{
   if (actions.value !== '') {
-    router.push({ name: actions.value })
+    router.push({ product_name: actions.value })
         .then(() => {
           console.log('Navigation success');
           actions.value = '';

@@ -43,7 +43,7 @@ const columns = ref([
 ]);
 
 const goTo = (name, id)=>{
-  router.push({name: name, params: {id: id}});
+  router.push({product_name: name, params: {id: id}});
 }
 
 const deleteUser =  (id)=> {

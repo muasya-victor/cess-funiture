@@ -9,9 +9,15 @@ const googleCallback = ()=>{
 </script>
 
 <template>
-  <AuthWrapper>
-    <LoginForm/>
-  </AuthWrapper>
+<!--  <AuthWrapper>-->
+<!--  </AuthWrapper>-->
+  <div class="h-screen flex flex-col justify-center items-center">
+    <div class="w-full md:w-1/2">
+      <LoginForm/>
+    </div>
+
+  </div>
+
 </template>
 
 <style scoped>

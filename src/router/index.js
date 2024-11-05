@@ -10,22 +10,45 @@ import CheckoutPage from "@/views/checkout/CheckoutPage.vue";
 import BrowseCars from "@/views/car/BrowseCars.vue";
 import Employees from "@/views/profile/Employees.vue";
 import RegisterForm from "@/views/auth/forms/RegisterForm.vue";
+import FurnitureViewer from "@/components/FurnitureViewer.vue";
 
 
 const routes = [
   {
-    name:'home',
+    name:'landing',
     path: '/',
     component: Landing,
+    requiresAuth: false,
+    meta: {
+      slug: 'Landing',
+    },
+    children: [
+      {
+        name:'furniture',
+        path: 'furniture/:furnitureId',
+        component: CarPopUp,
+        requiresAuth: false,
+        meta: {
+          slug: 'Detailed View',
+        },
+      },
+    ]
+  },
+
+  {
+    name:'home',
+    path: '/dashboard',
+    component: TheDashboardView,
     requiresAuth: false,
     meta: {
       slug: 'Home',
     },
     children: [
+
       {
-        name:'car',
-        path: 'car/:id',
-        component: CarPopUp,
+        name:'checkout',
+        path: 'checkout',
+        component: CheckoutPage,
         requiresAuth: false,
         meta: {
           slug: 'Detailed View',

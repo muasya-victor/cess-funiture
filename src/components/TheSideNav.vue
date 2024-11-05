@@ -26,9 +26,9 @@ const navigateToSelectedPage = (index)=>{
      * Where data has been json parsed , then there a parameter is required
      */
     selectedParams = JSON.parse(index);
-    router.push({name: selectedParams.name, params: {id: selectedParams.id}});
+    router.push({product_name: selectedParams.name, params: {id: selectedParams.id}});
   } catch {
-    router.push({name: index})
+    router.push({product_name: index})
   }
 }
 

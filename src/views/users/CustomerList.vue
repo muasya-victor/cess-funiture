@@ -174,7 +174,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         <template v-if="slotProps.column.key === 'actions'">
           <ElButton type="primary"
                     @click="()=>{
-                      router.push({name: 'edit-customer', params:{id: slotProps?.text?.id}})
+                      router.push({product_name: 'edit-customer', params:{id: slotProps?.text?.id}})
                     }"
                     size="default"
                     plain>

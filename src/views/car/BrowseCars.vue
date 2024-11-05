@@ -23,7 +23,7 @@ const handleCheckedCitiesChange = (value: string[]) => {
 const router = useRouter()
 
 const rentCar = (id)=>{
-  router.push({name: 'rent-car', params: {id: 1 }})
+  router.push({product_name: 'rent-car', params: {id: 1 }})
 }
 </script>
 

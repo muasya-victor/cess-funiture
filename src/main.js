@@ -103,7 +103,7 @@ api.interceptors.response.use(undefined, function (err) {
                 });
             }
             deleteLocalStorageInformation();
-            router.push({ name: "auth" });
+            router.push({ product_name: "auth" });
 
         }
 

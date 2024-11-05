@@ -27,13 +27,13 @@ const routerViewStyle = computed(() => {
 
 const authoriseQuickBooks = async () => {
   store.dispatch('fetchList', {url:'get-url'}).then(res=>{
-    router.push({name:'authorise-quickbooks'})
+    router.push({product_name:'authorise-quickbooks'})
   })
 };
 
 const logout = ()=>{
   deleteLocalStorageInformation()
-  router.replace({name:'auth'})
+  router.replace({product_name:'auth'})
 }
 const authData = JSON.parse(localStorage.getItem("authData")) || {}
 

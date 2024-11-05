@@ -1,22 +1,28 @@
 <script setup>
 
-import {ArrowLeft, ArrowRight, ShoppingTrolley} from "@element-plus/icons-vue";
+import {ShoppingTrolley} from "@element-plus/icons-vue";
 import CarCard from "@/views/car/CarCard.vue";
 import router from "@/router/index.js";
 import {ref, onMounted} from "vue"
 import store from "@/store/index.js";
 
-const viewCar = (id=1)=>{
-  router.push({name:'car',params:{id:id}});
+const viewCar = (id)=>{
+  router.push({name:'furniture',params:{furnitureId:id}});
 }
 
 const filters = ref(['all'])
 
+const products = ref([])
+
 const getProducts = ()=>{
   store.dispatch('fetchList', {url:'products'})
       .then((res)=>{
-        console.log(res.data, 'products')
+        products.value = res?.data?.results
       })
+}
+
+const addToCart = (product)=>{
+  localStorage.setItem("cartData", product);
 }
 
 onMounted(()=>{
@@ -80,7 +86,7 @@ onMounted(()=>{
 
     <!--    cards-->
     <div class="flex gap-2 flex-wrap items-center justify-start px-4">
-      <car-card @click="viewCar" v-for="item in 5"/>
+      <car-card @click="viewCar(product?.id)" v-for="product in products" :product-object="product" />
     </div>
 
     <div class="py-4 px-16 bg-gray-100 rounded-lg flex items-center justify-center w-fit text-center hidden">
