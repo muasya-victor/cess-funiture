@@ -2,7 +2,7 @@
 
 import {ref} from "vue"
 import TheSideNav from "@/components/TheSideNav.vue";
-import { UserFilled} from "@element-plus/icons-vue";
+import {Tools, User, UserFilled} from "@element-plus/icons-vue";
 import {useStore} from "vuex";
 import {deleteLocalStorageInformation} from "@/utility/functions.js";
 import {useRouter, useRoute} from "vue-router";
@@ -33,7 +33,7 @@ const authoriseQuickBooks = async () => {
 
 const logout = ()=>{
   deleteLocalStorageInformation()
-  router.replace({product_name:'auth'})
+  router.replace({name:'login'})
 }
 const authData = JSON.parse(localStorage.getItem("authData")) || {}
 
@@ -53,28 +53,21 @@ watch(route, updateBreadcrumbs, { immediate: true });
 
 <template>
   <div class=" flex flex-col  min-w-full  h-screen items-center">
-    <div class="w-full flex border-b items-center justify-between gap-4 py-2 px-4">
+    <div class="w-full flex border-b items-center
+     justify-between gap-4 py-2 px-4 ">
 
-      <div class="hidden h-[60px] w-[200px]  flex items-center  text-center text-2xl font-bold text-blue-500">
-        Quick Validate
+      <div class="hidden h-fit w-[150px]  md:flex items-center  text-center text-xl font-bold text-orange-600">
+        Cess Furniture
       </div>
 
-      <div class=" py-2 md:flex items-center  hidden ">
-        <div class="w-[40px]"
-             @click="store.state.sideNavCollapse = !store.state.sideNavCollapse">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12H12m-8.25 5.25h16.5" />
-          </svg>
+      <div class="w-full flex items-center justify-start h-fit p-0">
+
+        <div class="w-full flex items-center gap-4 h-fit p-0">
+
+          <router-link class="flex items-center gap-2 text-blue-600" :to="{name: 'users'}">Users <user-filled class="h-4 w-4"/> </router-link>
+          <router-link class="flex items-center gap-2 " :to="{name: 'landing'}">Funiture <tools class="h-4 w-4"/> </router-link>
         </div>
-      </div>
 
-      <div class="w-full flex items-center justify-end md:justify-between h-fit p-0">
-        <el-breadcrumb :style="breadcrumbStyle" separator="/" class="hidden md:block">
-          <el-breadcrumb-item v-for="(breadcrumb, index) in breadcrumbs" :key="index">
-            <span v-if="breadcrumb?.label === 'Dashboard' || breadcrumb?.label === 'dashboard'">Dashboard </span>
-            <router-link v-else :to="breadcrumb.path">{{ breadcrumb.label }}</router-link>
-          </el-breadcrumb-item>
-        </el-breadcrumb>
 
 
         <el-popover
@@ -90,8 +83,8 @@ watch(route, updateBreadcrumbs, { immediate: true });
             <!--            </div>-->
             <div class="font-bold rounded-md border border-gray-200 shadow-sm hover:shadow-lg h-[30px] w-[30px] md:w-fit md:h-fit p-0 md:p-2 flex items-center justify-center cursor-pointer">
               <div class="flex p-0 items-center w-full h-fit text-center justify-center">
-                <span v-if="authData && authData.user && authData.user.first_name">{{authData.user.first_name[0]}} {{authData.user.last_name[0]}}</span>
-                <span v-else>User</span> <!-- Default placeholder if data is missing -->
+                <span class="capitalize" v-if="authData && authData.user">{{authData.user.email[0]}}</span>
+                <span v-else>User</span>
               </div>
             </div>
 
@@ -148,20 +141,12 @@ watch(route, updateBreadcrumbs, { immediate: true });
     <!--    end top nav-->
 
     <div class="flex flex-1 w-full pr-2 overflow-y-auto">
-      <div class="hidden md:block z-50">
-        <TheSideNav/>
-      </div>
+<!--      <div class="hidden md:block z-50">-->
+<!--        <TheSideNav/>-->
+<!--      </div>-->
 
       <div :style="routerViewStyle" class="flex-1 p-2 md:pt-0 bg-gray-50
         overflow-x-hidden ">
-        <el-breadcrumb separator="/"
-                       :style="breadcrumbStyle"
-                       class="md:hidden" >
-          <el-breadcrumb-item v-for="(breadcrumb, index) in breadcrumbs" :key="index">
-            <span v-if="breadcrumb?.label === 'Dashboard' || breadcrumb?.label === 'dashboard'">Dashboard </span>
-            <router-link v-else :to="breadcrumb.path">{{ breadcrumb.label }}</router-link>
-          </el-breadcrumb-item>
-        </el-breadcrumb>
 
         <div class="bg-gray-50 h-full w-full">
           <router-view :style="routerViewStyle"/>

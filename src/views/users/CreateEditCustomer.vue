@@ -127,7 +127,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             })
             .then((resp) => {
               loginLoading.value = false;
-              router.push({product_name:'customers-list'})
+              router.push({name:'customers-list'})
             })
             .catch((err)=>{
               loginLoading.value = false;
@@ -142,7 +142,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
             })
             .then((resp) => {
               loginLoading.value = false;
-              router.push({product_name:'customers-list'})
+              router.push({name:'customers-list'})
             })
             .catch((err)=>{
               loginLoading.value = false;

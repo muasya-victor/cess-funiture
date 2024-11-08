@@ -5,12 +5,10 @@ import TheDashboardView from "@/components/TheDashboardView.vue";
 import UserProfile from "@/views/profile/UserProfile.vue";
 import Landing from "@/views/Landing.vue";
 import CarPopUp from "@/views/car/CarPopUp.vue";
-import ComingSoon from "@/components/ComingSoon.vue";
 import CheckoutPage from "@/views/checkout/CheckoutPage.vue";
 import BrowseCars from "@/views/car/BrowseCars.vue";
-import Employees from "@/views/profile/Employees.vue";
 import RegisterForm from "@/views/auth/forms/RegisterForm.vue";
-import FurnitureViewer from "@/components/FurnitureViewer.vue";
+import CustomerList from "@/views/users/CustomerList.vue";
 
 
 const routes = [
@@ -55,7 +53,8 @@ const routes = [
         },
       }
     ]
-  },{
+  },
+  {
     name:'register',
     path: '/register',
     component: RegisterView,
@@ -94,7 +93,7 @@ const routes = [
         {
           name: 'users',
           path: 'users',
-          component: Employees,
+          component: CustomerList,
           requiresAuth: true,
           meta: {
             slug: 'Users',

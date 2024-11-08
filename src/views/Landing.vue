@@ -72,7 +72,7 @@ onMounted(()=>{
       </div>
     </div>
 
-    <div class="flex gap-2 px-2 flex-wrap justify-center items-center w-fit">
+    <div class="flex gap-2 px-2 flex-wrap justify-center items-center w-fit hidden">
       <el-checkbox-group v-model="filters">
         <el-checkbox label="All" value="all" />
         <el-checkbox label="Living Room" value="Value A" />

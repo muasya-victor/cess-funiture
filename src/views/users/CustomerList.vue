@@ -13,23 +13,19 @@ const ruleForm = ref<FormInstance>();
 const rules = reactive<FormRules>({});
 const columns = ref([
   {
-    title: "Name",
-    dataIndex: "fully_qualified_name",
-    key: "fully_qualified_name",
+    title: "First Name",
+    dataIndex: "first_name",
+    key: "first_name",
+  },
+  {
+    title: "Last Name",
+    dataIndex: "last_name",
+    key: "last_name",
   },
   {
     title: "Email",
-    dataIndex: "primary_email_address",
-    key: "primary_email_address",
-  },
-  {
-    title: "Date Created",
-    dataIndex: "created_time",
-    key: "created_time",
-  },{
-    title: "KRA PIN",
-    dataIndex: "pin",
-    key: "pin",
+    dataIndex: "email",
+    key: "email",
   },
   {
     title: "Actions",
@@ -39,41 +35,14 @@ const columns = ref([
 ]);
 
 
-const attemptKraValidation = (invoice_number, invoice_id)=>{
-  store.state.submitLoading = true
-  selected_invoice_id.value = invoice_id
-  console.log('invoice id ',invoice_id)
 
-  store.dispatch('postData', {data: {"invoice_number": invoice_number}, url:"invoice"})
-      .then((response)=>{
-        if (selected_invoice_id.value != null && response.data?.download_url){
-          store.dispatch('patchData', {url: 'invoice-list', id: selected_invoice_id.value,
-            data:{is_validated:true, validated_invoice_url: response.data?.download_url}})
-        }
-        showValidatedInvoice.value = true;
-        validatedInvoicePdfUrl.value = response.data?.download_url;
-        store.state.submitLoading = false
-
-      })
-      .catch((err)=>{
-        showValidatedInvoice.value = false;
-        store.state.submitLoading = false
-      })
-  ;
-}
-const viewSelectedInvoice = (download_url)=>{
-  console.log(download_url, 'url')
-  showValidatedInvoice.value = true;
-  validatedInvoicePdfUrl.value = download_url;
-}
 
 const form = ref({
   invoice_number:1020
 })
-const postManually = ref(false)
 
 const invoiceNumberFilter = ref('')
-const backendUrl = ref('customers-list')
+const backendUrl = ref('users')
 
 watch(invoiceNumberFilter, (newFilterValue) => {
   if (newFilterValue) {
@@ -143,20 +112,8 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         :fetch-url="backendUrl"
         v-if="!store.state.submitLoading"
         title="Customers">
-
-      <template #otherItems>
-        <el-input placeholder="search by customer name" v-model="invoiceNumberFilter"/>
-      </template>
-
       <template v-slot:bodyCell="slotProps">
 
-        <template v-if="slotProps.column.key === 'download_action'">
-          <el-checkbox v-if="slotProps.text.is_validated === true" size="large" />
-        </template>
-
-        <template v-if="slotProps.column.key === 'created_date'">
-          {{formatDate(slotProps.text)}}
-        </template>
         <template v-if="slotProps.column.key === 'updated_date'">
           {{formatDate(slotProps.text)}}
         </template>
@@ -174,7 +131,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         <template v-if="slotProps.column.key === 'actions'">
           <ElButton type="primary"
                     @click="()=>{
-                      router.push({product_name: 'edit-customer', params:{id: slotProps?.text?.id}})
+                      router.push({name: 'edit-customer', params:{id: slotProps?.text?.id}})
                     }"
                     size="default"
                     plain>
