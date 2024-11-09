@@ -9,6 +9,12 @@ import CheckoutPage from "@/views/checkout/CheckoutPage.vue";
 import BrowseCars from "@/views/car/BrowseCars.vue";
 import RegisterForm from "@/views/auth/forms/RegisterForm.vue";
 import CustomerList from "@/views/users/CustomerList.vue";
+import ContactUs from "@/components/ContactUs.vue";
+import LoginForm from "@/views/auth/forms/LoginForm.vue";
+import ProductList from "@/views/products/ProductList.vue";
+import ProductCategoryList from "@/views/products/ProductCategoryList.vue";
+import CreateEditCategory from "@/views/products/CreateEditCategory.vue";
+import CreateEditProduct from "@/views/products/CreateEditProduct.vue";
 
 
 const routes = [
@@ -67,7 +73,15 @@ const routes = [
   {
     name:'login',
     path: '/login',
-    component: LoginView,
+    component: LoginForm,
+    meta: {
+      slug: 'Login',
+    },
+  },
+  {
+    name:'contact',
+    path: '/contact',
+    component: ContactUs,
     meta: {
       slug: 'Login',
     },
@@ -117,7 +131,7 @@ const routes = [
             slug: 'Checkout',
           },
         },
-      {
+        {
           name: 'register-user',
           path: 'register-user',
           component: RegisterForm,
@@ -144,6 +158,48 @@ const routes = [
                 slug: 'Rent Car',
               },
             }
+          ]
+        },
+        {
+          name: 'products',
+          path: 'products',
+          component: ProductList,
+          requiresAuth: true,
+          meta: {
+            slug: 'Products',
+          },
+          children: [
+            {
+              name: 'create-product',
+              path: 'create-product',
+              component: CreateEditProduct
+            },
+            {
+              name: 'edit-product',
+              path: 'edit-product/:id',
+              component: CreateEditProduct
+            }
+          ]
+        },
+        {
+          name: 'product-category',
+          path: 'product-category',
+          component: ProductCategoryList,
+          requiresAuth: true,
+          meta: {
+            slug: 'Categories',
+          },
+          children: [
+            {
+              name: 'edit-category',
+              path: 'edit-category/:id',
+              component: CreateEditCategory,
+            },
+            {
+              name: 'create-category',
+              path: 'create-category',
+              component: CreateEditCategory,
+            },
           ]
         },
       ]

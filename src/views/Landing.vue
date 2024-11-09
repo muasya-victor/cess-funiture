@@ -31,7 +31,7 @@ onMounted(()=>{
 </script>
 
 <template>
-  <div class="flex flex-col items-center gap-6">
+  <div class="flex h-screen flex-col items-center gap-6 bg-gray-50">
 
     <router-view/>
 
@@ -39,19 +39,22 @@ onMounted(()=>{
      bg-cover bg-no-repeat bg-top bg-[url('/bg.jpg')] bg-opacity-80
       w-full bg-transparent relative">
 
-      <div class=" h-fit w-full bg-transparent py-2 px-4 flex justify-between items-center">
+      <div class="bg-yellow-200  h-fit w-full py-2 px-4 flex justify-between items-center">
         <div class="font-extrabold text-xl hidden md:flex w-[200px]">Cess Furniture</div>
         <div class="flex gap-4 h-fit items-center justify-between md:justify-end w-full">
-          <span>Home</span>
-          <span>Shop</span>
+          <router-link to="/">Home</router-link>
+          <router-link to="/contact">Contact Us</router-link>
           <el-button type="primary" circle size="large" class="relative w-fit">
             <shopping-trolley class="h-6 w-6"/>
             <el-button type="warning" class="absolute -top-1 -right-3 cursor-text" circle size="small">0</el-button>
           </el-button>
 
-          <el-button type="warning" plain round size="large">
-            Sign In
-          </el-button>
+          <router-link to="/login">
+            <el-button type="warning" plain round size="large">
+              Sign In
+            </el-button>
+          </router-link>
+
         </div>
       </div>
 
@@ -65,35 +68,15 @@ onMounted(()=>{
           Office , Home & Kitchen funiture available
         </p>
 
-        <el-button round type="warning" size="large" :icon="ShoppingTrolley">
-          Shop
-        </el-button>
-
       </div>
     </div>
 
-    <div class="flex gap-2 px-2 flex-wrap justify-center items-center w-fit hidden">
-      <el-checkbox-group v-model="filters">
-        <el-checkbox label="All" value="all" />
-        <el-checkbox label="Living Room" value="Value A" />
-        <el-checkbox label="Dining Room" value="Value A" />
-        <el-checkbox label="Kitchen" value="Value B" />
-        <el-checkbox label="Office" value="Value C" />
-      </el-checkbox-group>
-
-    </div>
-
-
     <!--    cards-->
-    <div class="flex gap-2 flex-wrap items-center justify-start px-4">
+    <div class="flex flex-1 gap-2 flex-wrap items-start justify-start px-4 w-full">
       <car-card @click="viewCar(product?.id)" v-for="product in products" :product-object="product" />
     </div>
 
-    <div class="py-4 px-16 bg-gray-100 rounded-lg flex items-center justify-center w-fit text-center hidden">
-      <div class="text-4xl font-extrabold text-orange-400">Your Dream Funiture</div>
-    </div>
-
-    <div class="p-4 w-full bg-gray-50 text-blue-500 flex items-center justify-between">
+    <div class="p-4 w-full bg-yellow-200 text-blue-500 flex items-center justify-between">
       <div class="font-extrabold text-xl text-orange-600">Cess Funiture</div>
       <div>Cess@2024</div>
     </div>

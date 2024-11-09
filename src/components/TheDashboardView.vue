@@ -2,7 +2,7 @@
 
 import {ref} from "vue"
 import TheSideNav from "@/components/TheSideNav.vue";
-import {Tools, User, UserFilled} from "@element-plus/icons-vue";
+import {PriceTag, Tools, User, UserFilled, WalletFilled} from "@element-plus/icons-vue";
 import {useStore} from "vuex";
 import {deleteLocalStorageInformation} from "@/utility/functions.js";
 import {useRouter, useRoute} from "vue-router";
@@ -65,7 +65,12 @@ watch(route, updateBreadcrumbs, { immediate: true });
         <div class="w-full flex items-center gap-4 h-fit p-0">
 
           <router-link class="flex items-center gap-2 text-blue-600" :to="{name: 'users'}">Users <user-filled class="h-4 w-4"/> </router-link>
-          <router-link class="flex items-center gap-2 " :to="{name: 'landing'}">Funiture <tools class="h-4 w-4"/> </router-link>
+          <router-link class="flex items-center gap-2 " :to="{name: 'landing'}">Shop<tools class="h-4 w-4"/> </router-link>
+          <router-link v-if="authData?.user?.user_type === 'admin'" class="flex items-center gap-2 " :to="{name: 'products'}">
+            Products<price-tag class="h-4 w-4"/> </router-link>
+          <router-link v-if="authData?.user?.user_type === 'admin'" class="flex items-center gap-2 " :to="{name: 'product-category'}">
+            Product Categories
+            <wallet-filled class="h-4 w-4"/> </router-link>
         </div>
 
 
