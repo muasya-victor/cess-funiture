@@ -96,7 +96,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
 const downloadReport = () => {
   try {
     store.dispatch('downloadFirmData', {
-      url: 'download/report',
+      url: 'users/download/report',
     })
         .then((response) => {
 
@@ -105,6 +105,9 @@ const downloadReport = () => {
     console.error("Error downloading report:", error);
   }
 };
+
+const authData = JSON.parse(localStorage.getItem("authData"));
+
 
 </script>
 
@@ -125,7 +128,8 @@ const downloadReport = () => {
         v-if="!store.state.submitLoading"
         title="Users">
       <template #otherItems>
-        <el-button size="large" v-if="authData?.user?.user_type !== 'furntiture_store_owner'" @click="downloadReport" class="mb-2 mr-2">Download User Report</el-button>
+<!--        <el-button size="large" v-if="authData?.user?.user_type !== 'furntiture_store_owner'" @click="downloadReport" class="mb-2 mr-2">Download User Report</el-button>-->
+        <el-button size="large" @click="downloadReport" class="mb-2 mr-2">Download User Report</el-button>
       </template>
 
       <template v-slot:bodyCell="slotProps">
