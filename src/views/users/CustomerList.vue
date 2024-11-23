@@ -93,7 +93,18 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   });
 };
 
+const downloadReport = () => {
+  try {
+    store.dispatch('downloadFirmData', {
+      url: 'download/report',
+    })
+        .then((response) => {
 
+        });
+  } catch (error) {
+    console.error("Error downloading report:", error);
+  }
+};
 
 </script>
 
@@ -106,12 +117,17 @@ const submitForm = async (formEl: FormInstance | undefined) => {
       <BaseLoader/>
     </div>
 
+
     <BaseDataTable
         :columns="columns"
         :show-other-items="true"
         :fetch-url="backendUrl"
         v-if="!store.state.submitLoading"
-        title="Customers">
+        title="Users">
+      <template #otherItems>
+        <el-button size="large" v-if="authData?.user?.user_type !== 'furntiture_store_owner'" @click="downloadReport" class="mb-2 mr-2">Download User Report</el-button>
+      </template>
+
       <template v-slot:bodyCell="slotProps">
 
         <template v-if="slotProps.column.key === 'updated_date'">
