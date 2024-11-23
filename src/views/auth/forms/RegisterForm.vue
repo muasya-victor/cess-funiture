@@ -1,74 +1,85 @@
   <template>
-    <el-form
-      ref="ruleForm"
-      :model="form"
-      :rules="rules"
-      class="flex flex-col gap-4 w-full h-full"
-      label-position="top"
-    >
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
-        <el-form-item label="First Name" prop="first_name">
-          <el-input
-              v-model="form.first_name"
-              :prefix-icon="UserIcon"
-              placeholder="first name"
-              size="large"
-              type="text"
-          />
-        </el-form-item>
-        <el-form-item label="Last Name" prop="last_name">
-          <el-input
-              v-model="form.last_name"
-              :prefix-icon="UserIcon"
-              placeholder="last name"
-              size="large"
-              type="text"
-          />
-        </el-form-item>
-
-        <el-form-item label="Email" prop="email">
-          <el-input
-              v-model="form.email"
-              :prefix-icon="FolderOpened"
-              placeholder="email"
-              size="large"
-              type="email"
-          />
-        </el-form-item>
-
-        <el-form-item label="National Id" prop="last_name">
-          <el-input
-              v-model="form.last_name"
-              :prefix-icon="UserIcon"
-              placeholder="last name"
-              size="large"
-              type="text"
-          />
-        </el-form-item>
-
-      </div>
-
-
-      <div class="flex w-full ">
-        <el-button
-          :loading="submitLoading"
-          class="w-fit "
-          size="large"
-          style="border-radius: 4px"
-          type="primary"
-          html-type="submit"
-          @click="submitForm(ruleForm)"
+    <BaseDialog>
+      <template #content>
+        <el-form
+            ref="ruleForm"
+            :model="form"
+            :rules="rules"
+            class="flex flex-col gap-4 w-full h-full"
+            label-position="top"
         >
-          Update Profile
-        </el-button>
-      </div>
-      <div class="text-sm hidden">
-        <span class="text-gray-400"> Already have an Account ? </span>
-        <router-link :to="{name:'login'}" class="text-blue-400 hover:text-blue-500 hover:font-bold">
-          Sign In </router-link>
-      </div>
-    </el-form>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+            <el-form-item label="First Name" prop="first_name">
+              <el-input
+                  v-model="form.first_name"
+                  :prefix-icon="UserIcon"
+                  placeholder="first name"
+                  size="large"
+                  type="text"
+              />
+            </el-form-item>
+            <el-form-item label="Last Name" prop="last_name">
+              <el-input
+                  v-model="form.last_name"
+                  :prefix-icon="UserIcon"
+                  placeholder="last name"
+                  size="large"
+                  type="text"
+              />
+            </el-form-item>
+
+            <el-form-item label="Email" prop="email">
+              <el-input
+                  v-model="form.email"
+                  :prefix-icon="FolderOpened"
+                  placeholder="email"
+                  size="large"
+                  type="email"
+              />
+            </el-form-item>
+
+            <el-form-item label="Username" prop="username">
+              <el-input
+                  v-model="form.username"
+                  :prefix-icon="UserIcon"
+                  placeholder="username"
+                  size="large"
+                  type="text"
+              />
+            </el-form-item>
+            <el-form-item label="User Type" prop="user_type">
+              <el-select v-model="form.user_type">
+                <el-option value="furniture_store_owner">Store Owner</el-option>
+                <el-option value="customer">Customer</el-option>
+              </el-select>
+            </el-form-item>
+
+          </div>
+
+
+          <div class="flex w-full ">
+            <el-button
+                :loading="submitLoading"
+                class="w-fit "
+                size="large"
+                style="border-radius: 4px"
+                type="primary"
+                html-type="submit"
+                @click="submitForm(ruleForm)"
+            >
+              Submit
+            </el-button>
+          </div>
+          <div class="text-sm hidden">
+            <span class="text-gray-400"> Already have an Account ? </span>
+            <router-link :to="{name:'login'}" class="text-blue-400 hover:text-blue-500 hover:font-bold">
+              Sign In </router-link>
+          </div>
+        </el-form>
+      </template>
+    </BaseDialog>
+
 </template>
 
 <script lang="ts" setup>
@@ -80,6 +91,7 @@ import router from "@/router";
 import { FolderOpened } from '@element-plus/icons-vue'
 import BaseLoader from "@/components/base/BaseLoader.vue";
 import {useRoute} from "vue-router"
+import BaseDialog from "@/components/base/BaseDialog.vue";
 
 const route = useRoute()
 
@@ -114,17 +126,34 @@ const setData = () => {
   form.value = authData
 }
 
+
 const submitForm = async (formEl: FormInstance | undefined) => {
   submitLoading.value = true;
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      store.dispatch("patchData", {url: 'user',
-        data:form.value,
-        id:authData?.id}).then((response) => {
-        submitLoading.value = false
+      if (route.name === 'user-edit'){
+        store.dispatch("patchData", {url: 'users',
+          data:form.value,
+          id:route?.params?.id
+        }).then((response) => {
+          submitLoading.value = false
 
-      })
+        })
+            .catch((error) => {
+              submitLoading.value = false;
+            })
+      }else {
+        store.dispatch("postData", {url: 'users',
+          data:form.value,
+          id:authData?.id}).then((response) => {
+          submitLoading.value = false
+        })
+            .catch((error) => {
+              submitLoading.value = false;
+            })
+      }
+
     } else {
       submitLoading.value = false;
     }

@@ -112,6 +112,18 @@ const routes = [
           meta: {
             slug: 'Users',
           },
+          children: [
+            {
+              name:'create-user',
+              path: 'register',
+              component: RegisterForm,
+              requiresAuth: true,
+              roles: ['admin', 'store_owner'],
+              meta: {
+                slug: 'User Registration',
+              },
+            },
+          ]
         },
         {
           name: 'checkout',

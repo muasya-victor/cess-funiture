@@ -124,6 +124,7 @@ const authData = JSON.parse(localStorage.getItem("authData"));
     <BaseDataTable
         :columns="columns"
         :show-other-items="true"
+        create-route-name="create-user"
         :fetch-url="backendUrl"
         v-if="!store.state.submitLoading"
         title="Users">
