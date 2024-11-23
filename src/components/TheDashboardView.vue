@@ -66,9 +66,9 @@ watch(route, updateBreadcrumbs, { immediate: true });
 
           <router-link class="flex items-center gap-2 text-blue-600" :to="{name: 'users'}">Users <user-filled class="h-4 w-4"/> </router-link>
           <router-link class="flex items-center gap-2 " :to="{name: 'landing'}">Shop<tools class="h-4 w-4"/> </router-link>
-          <router-link v-if="authData?.user?.user_type === 'admin'" class="flex items-center gap-2 " :to="{name: 'products'}">
+          <router-link v-if="authData?.user?.user_type === 'furniture_store_owner' || authData?.user?.user_type === 'admin'" class="flex items-center gap-2 " :to="{name: 'products'}">
             Products<price-tag class="h-4 w-4"/> </router-link>
-          <router-link v-if="authData?.user?.user_type === 'admin'" class="flex items-center gap-2 " :to="{name: 'product-category'}">
+          <router-link v-if="authData?.user?.user_type === 'furniture_store_owner' || authData?.user?.user_type === 'admin'" class="flex items-center gap-2 " :to="{name: 'product-category'}">
             Product Categories
             <wallet-filled class="h-4 w-4"/> </router-link>
         </div>

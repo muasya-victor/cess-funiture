@@ -54,6 +54,18 @@
                 <el-option value="customer">Customer</el-option>
               </el-select>
             </el-form-item>
+            <el-form-item label="Password" prop="password">
+              <el-input
+                  v-model="form.password"
+                  :prefix-icon="LockClosedIcon"
+                  placeholder="Enter your password"
+                  show-password
+                  size="large"
+                  type="password"
+                  class="rounded-md"
+              />
+
+            </el-form-item>
 
           </div>
 

@@ -71,6 +71,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
         :columns="columns"
         :show-other-items="true"
         :fetch-url="backendUrl"
+        create-route-name="create-category"
         v-if="!store.state.submitLoading"
         title="Product Categories">
       <template v-slot:bodyCell="slotProps">
