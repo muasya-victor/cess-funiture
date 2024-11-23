@@ -100,10 +100,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   loginLoading.value = true;
   const cart = JSON.parse(localStorage.getItem("cart"));
 
-  if (cart) {
-    console.log("cart", cart);
-    router.push({ name: "checkout" });
-  }
+  console.log('here')
 
   if (!formEl) return;
 
@@ -117,7 +114,12 @@ const submitForm = async (formEl: FormInstance | undefined) => {
           .then((resp) => {
             localStorage.setItem("authData", JSON.stringify(resp.data));
             loginLoading.value = false;
-            router.push({ name: "furniture" });
+            if (!cart) {
+              router.push({ name: "users" });
+            }else {
+              console.log("cart", cart);
+              router.push({ name: "checkout" });
+            }
           })
           .catch((err) => {
             loginLoading.value = false;

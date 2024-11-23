@@ -84,8 +84,8 @@ const deleteProduct = (id)=>{
           <ElButton
               type="primary"
               @click="() => {
-        router.push({ name: 'edit-product', params: { id: slotProps?.text?.id } });
-      }"
+                router.push({ name: 'edit-product', params: { id: slotProps?.text?.id } });
+              }"
               size="default"
               plain
           >
