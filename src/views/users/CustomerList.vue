@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import {ArrowRight, Delete, Download, EditPen, Open} from "@element-plus/icons-vue";
 import BaseDataTable from "@/components/base/BaseDataTable.vue";
-import ValidatedInvoice from "@/views/invoices/ValidatedInvoice.vue";
 import {reactive, ref, watch} from "vue"
 import router from "@/router/index.js";
 import store from "@/store/index.js";
@@ -129,8 +128,8 @@ const authData = JSON.parse(localStorage.getItem("authData"));
         v-if="!store.state.submitLoading"
         title="Users">
       <template #otherItems>
-<!--        <el-button size="large" v-if="authData?.user?.user_type !== 'furntiture_store_owner'" @click="downloadReport" class="mb-2 mr-2">Download User Report</el-button>-->
-        <el-button size="large" @click="downloadReport" class="mb-2 mr-2">Download User Report</el-button>
+        <el-button size="large" v-if="authData?.user?.user_type === 'furniture_store_owner'" @click="downloadReport" class="mb-2 mr-2">Download User Report</el-button>
+<!--        <el-button size="large" @click="downloadReport" class="mb-2 mr-2">Download User Report</el-button>-->
       </template>
 
       <template v-slot:bodyCell="slotProps">
