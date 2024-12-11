@@ -30,11 +30,6 @@ const columns = ref([
     dataIndex: "product_inventory",
     key: "product_inventory",
   },
-  {
-    title: "Actions",
-    dataIndex: "",
-    key: "actions",
-  },
 ]);
 
 const backendUrl = ref('products');
