@@ -114,7 +114,7 @@ export default {
       // Load .obj model
       const loader = new OBJLoader();
       loader.load(
-          this.modelPath,
+          '/InteriorTest.obj',
           (object) => {
             object.scale.set(this.imageSize, this.imageSize, this.imageSize);
             object.position.set(0, -2.5, 0);

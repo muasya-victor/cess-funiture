@@ -55,7 +55,6 @@ onMounted(() => {
         <div class="w-full flex flex-col items-center justify-center gap-6">
           <!-- Render FurnitureViewer only when loading is complete and modelUrl is ready -->
           <FurnitureViewer
-              v-if="!loading && modelUrl"
               :product-object="productObj"
               :image-size="1.1"
               :model-path="modelUrl"
