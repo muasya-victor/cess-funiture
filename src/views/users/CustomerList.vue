@@ -151,7 +151,7 @@ const authData = JSON.parse(localStorage.getItem("authData"));
         <template v-if="slotProps.column.key === 'actions'">
           <ElButton type="primary"
                     @click="()=>{
-                      router.push({name: 'edit-customer', params:{id: slotProps?.text?.id}})
+                      router.push({name: 'edit-user', params:{id: slotProps?.text?.id}})
                     }"
                     size="default"
                     plain>

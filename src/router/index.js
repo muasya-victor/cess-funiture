@@ -15,6 +15,7 @@ import ProductList from "@/views/products/ProductList.vue";
 import ProductCategoryList from "@/views/products/ProductCategoryList.vue";
 import CreateEditCategory from "@/views/products/CreateEditCategory.vue";
 import CreateEditProduct from "@/views/products/CreateEditProduct.vue";
+import UserCreateEdit from "@/views/users/UserCreateEdit.vue";
 
 
 const routes = [
@@ -117,6 +118,16 @@ const routes = [
               name:'create-user',
               path: 'register',
               component: RegisterForm,
+              requiresAuth: true,
+              roles: ['admin', 'store_owner'],
+              meta: {
+                slug: 'User Registration',
+              },
+            },
+            {
+              name:'edit-user',
+              path: 'edit-user/:id',
+              component: UserCreateEdit,
               requiresAuth: true,
               roles: ['admin', 'store_owner'],
               meta: {

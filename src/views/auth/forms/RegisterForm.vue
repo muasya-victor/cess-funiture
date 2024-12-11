@@ -54,7 +54,7 @@
                 <el-option value="customer">Customer</el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="Password" prop="password">
+            <el-form-item v-if="route.name !=='edit-user'" label="Password" prop="password">
               <el-input
                   v-model="form.password"
                   :prefix-icon="LockClosedIcon"
@@ -144,7 +144,7 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   if (!formEl) return;
   await formEl.validate((valid, fields) => {
     if (valid) {
-      if (route.name === 'user-edit'){
+      if (route.name === 'edit-user'){
         store.dispatch("patchData", {url: 'users',
           data:form.value,
           id:route?.params?.id
