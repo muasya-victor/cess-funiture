@@ -132,7 +132,7 @@ const deleteUser = (id)=>{
         title="Users">
       <template #otherItems>
         <el-button size="large" v-if="authData?.user?.user_type === 'furniture_store_owner'" @click="downloadReport" class="mb-2 mr-2">Download User Report</el-button>
-<!--        <el-button size="large" @click="downloadReport" class="mb-2 mr-2">Download User Report</el-button>-->
+        <el-button size="large" v-if="authData?.user?.user_type === 'admin'" @click="downloadReport" class="mb-2 mr-2">Download User Report</el-button>
       </template>
 
       <template v-slot:bodyCell="slotProps">
