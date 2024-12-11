@@ -1,7 +1,40 @@
 <script setup>
 import {ref, onMounted} from "vue";
+import store from "@/store"
+import router from "@/router/index.js";
 
 const cartProducts = ref([])
+const formData = ref([])
+const authData = JSON.parse(localStorage.getItem("authData"));
+
+const attemptSubmit = () => {
+  console.log('start')
+  store.dispatch('postData', {
+    url: 'carts',
+    data: {
+      items: cartProducts.value.map((item) => ({
+        product: item.product.id,
+        quantity: item.quantity
+      })),
+      customer: authData.user?.id
+    }
+  })
+      .then((res) => {
+        store.dispatch('postData', {
+          url: 'payments', data: {
+            customer: authData.user?.id,
+            cart: res?.data?.id,
+            amount: formData.value.amount,
+            payment_method: "cash",
+          }
+        })
+      })
+      .then((resp) => {
+        localStorage.removeItem("cart");
+        router.push('/')
+      })
+};
+
 
 const getCartProducts = ()=>{
   cartProducts.value = JSON.parse(localStorage.getItem('cart')) || [];
@@ -43,7 +76,7 @@ onMounted(()=>{
 
     <div class="flex flex-col border-r h-full
      items-center justify-start gap-8 flex-1 p-2">
-<!--      {{cartProducts}}-->
+      {{cartProducts}}
       <div class="border flex items-center justify-between gap-2 p-4 w-full rounded" v-for="product in cartProducts" :key="product.product.id">
         <span class="capitalize font-bold text-lg">{{product.product?.product_name}}</span>
 
@@ -58,9 +91,8 @@ onMounted(()=>{
 
       <span class="font-bold">Total Cost : {{formatCurrency(calculateTotalCost())}}</span>
 
-      <el-input-number style="width: 100%;" size="large" placeholder="amount"></el-input-number>
-      <el-input size="large" placeholder="mpesa reference number"></el-input>
-      <el-button class="w-full" type="warning" size="large">Complete Payment</el-button>
+      <el-input-number style="width: 100%;" v-model="formData.amount" size="large" placeholder="amount"></el-input-number>
+      <el-button class="w-full" type="warning" html-type="submit" @click="attemptSubmit" size="large">Complete Payment</el-button>
     </div>
 
   </div>
