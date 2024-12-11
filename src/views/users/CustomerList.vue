@@ -106,6 +106,9 @@ const downloadReport = () => {
 };
 
 const authData = JSON.parse(localStorage.getItem("authData"));
+const deleteUser = (id)=>{
+  store.dispatch('deleteData',{id: id})
+}
 
 
 </script>
@@ -159,6 +162,13 @@ const authData = JSON.parse(localStorage.getItem("authData"));
               <EditPen class="h-fit"/>
             </template>
             <template #default>Edit</template>
+          </ElButton>
+
+          <ElButton type="danger"
+                    @click="deleteUser(slotProps?.text?.id)"
+                    size="default"
+                    plain>
+            <template #default>Delete</template>
           </ElButton>
         </template>
       </template>
