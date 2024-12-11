@@ -76,7 +76,6 @@ onMounted(()=>{
 
     <div class="flex flex-col border-r h-full
      items-center justify-start gap-8 flex-1 p-2">
-      {{cartProducts}}
       <div class="border flex items-center justify-between gap-2 p-4 w-full rounded" v-for="product in cartProducts" :key="product.product.id">
         <span class="capitalize font-bold text-lg">{{product.product?.product_name}}</span>
 
