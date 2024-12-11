@@ -135,7 +135,10 @@ const rules = reactive<FormRules>({
 const authData = JSON.parse(localStorage.getItem("authData"))?.user;
 
 const setData = () => {
-  form.value = authData
+  store.dispatch('fetchSingleItem', {url:'users', id:route?.params.id})
+      .then(res => {
+        form.value = res?.data
+      });
 }
 
 
